@@ -3653,11 +3653,12 @@ the orginal document -->
       <p class="note">
       Note: One example of a strong validator is an integer that is
       incremented in stable storage every time an entity is changed.
-      <!-- FIXME Maybe not same paragraph -->
       An entity's modification time, if represented with one-second
       resolution, could be a weak validator, since it is possible that
       the resource might be modified twice during a single second.
+      </p>
 
+      <p>
       Support for weak validators is optional. However, weak validators
       allow for more efficient caching of equivalent objects; for
       example, a hit counter on a site is probably good enough if it is
@@ -8287,34 +8288,34 @@ the orginal document -->
    </p>
 
    <!-- FIXME Make a table or something -->
-   <p>
-       Gary Adams                  Ross Patterson
-       Harald Tveit Alvestrand     Albert Lunde
-       Keith Ball                  John C. Mallery
-       Brian Behlendorf            Jean-Philippe Martin-Flatin
-       Paul Burchard               Mitra
-       Maurizio Codogno            David Morris
-       Mike Cowlishaw              Gavin Nicol
-       Roman Czyborra              Bill Perry
-       Michael A. Dolan            Jeffrey Perry
-       David J. Fiander            Scott Powers
-       Alan Freier                 Owen Rees
-       Marc Hedlund                Luigi Rizzo
-       Greg Herlihy                David Robinson
-       Koen Holtman                Marc Salomon
-       Alex Hopmann                Rich Salz
-       Bob Jernigan                Allan M. Schiffman
-       Shel Kaphan                 Jim Seidman
-       Rohit Khare                 Chuck Shotton
-       John Klensin                Eric W. Sink
-       Martijn Koster              Simon E. Spero
-       Alexei Kosut                Richard N. Taylor
-       David M. Kristol            Robert S. Thau
-       Daniel LaLiberte            Bill (BearHeart) Weinman
-       Ben Laurie                  Francois Yergeau
-       Paul J. Leach               Mary Ellen Zurko
-       Daniel DuBois               Josh Cohen
-   </p>
+   <table>
+       <tr><td>Gary Adams                  </td><td>Ross Patterson</td></tr>
+       <tr><td>Harald Tveit Alvestrand     </td><td>Albert Lunde</td></tr>
+       <tr><td>Keith Ball                  </td><td>John C. Mallery</td></tr>
+       <tr><td>Brian Behlendorf            </td><td>Jean-Philippe Martin-Flatin</td></tr>
+       <tr><td>Paul Burchard               </td><td>Mitra</td></tr>
+       <tr><td>Maurizio Codogno            </td><td>David Morris</td></tr>
+       <tr><td>Mike Cowlishaw              </td><td>Gavin Nicol</td></tr>
+       <tr><td>Roman Czyborra              </td><td>Bill Perry</td></tr>
+       <tr><td>Michael A. Dolan            </td><td>Jeffrey Perry</td></tr>
+       <tr><td>David J. Fiander            </td><td>Scott Powers</td></tr>
+       <tr><td>Alan Freier                 </td><td>Owen Rees</td></tr>
+       <tr><td>Marc Hedlund                </td><td>Luigi Rizzo</td></tr>
+       <tr><td>Greg Herlihy                </td><td>David Robinson</td></tr>
+       <tr><td>Koen Holtman                </td><td>Marc Salomon</td></tr>
+       <tr><td>Alex Hopmann                </td><td>Rich Salz</td></tr>
+       <tr><td>Bob Jernigan                </td><td>Allan M. Schiffman</td></tr>
+       <tr><td>Shel Kaphan                 </td><td>Jim Seidman</td></tr>
+       <tr><td>Rohit Khare                 </td><td>Chuck Shotton</td></tr>
+       <tr><td>John Klensin                </td><td>Eric W. Sink</td></tr>
+       <tr><td>Martijn Koster              </td><td>Simon E. Spero</td></tr>
+       <tr><td>Alexei Kosut                </td><td>Richard N. Taylor</td></tr>
+       <tr><td>David M. Kristol            </td><td>Robert S. Thau</td></tr>
+       <tr><td>Daniel LaLiberte            </td><td>Bill (BearHeart) Weinman</td></tr>
+       <tr><td>Ben Laurie                  </td><td>Francois Yergeau</td></tr>
+       <tr><td>Paul J. Leach               </td><td>Mary Ellen Zurko</td></tr>
+       <tr><td>Daniel DuBois               </td><td>Josh Cohen</td></tr>
+   </table>
 
    <p>
    Much of the content and presentation of the caching design is due to
