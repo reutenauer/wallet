@@ -95,7 +95,7 @@ $(function() {
     tabs('#section-0');
 
   autoHeight();
-  $("#email").oas_mailto();});
+  $(".email").oas_mailto();});
   $(window).resize(function() {
     autoHeight();
 });
