@@ -5211,32 +5211,43 @@ the orginal document -->
    </p>
 
    <!-- TODO -->
-   <p>
-   public
+   <dl>
+   <dt>public</dt>
+      <dd>
       Indicates that the response MAY be cached by any cache, even if it
       would normally be non-cacheable or cacheable only within a non-
       shared cache. (See also Authorization, section 14.8, for
       additional details.)
+      </dd>
 
-   private
+   <dt>private</dt>
+      <dd>
       Indicates that all or part of the response message is intended for
       a single user and MUST NOT be cached by a shared cache. This
       allows an origin server to state that the specified parts of the
       response are intended for only one user and are not a valid
       response for requests by other users. A private (non-shared) cache
       MAY cache the response.
+      </dd>
 
+       <!-- FIXME questionable -->
+       <p class="note">
        Note: This usage of the word private only controls where the
        response may be cached, and cannot ensure the privacy of the
        message content.
+       </p>
 
-   no-cache
+   <dt>no-cache</dt>
+       <dd>
+       <p>
        If the no-cache directive does not specify a field-name, then a
       cache MUST NOT use the response to satisfy a subsequent request
       without successful revalidation with the origin server. This
       allows an origin server to prevent caching even by caches that
       have been configured to return stale responses to client requests.
+      </p>
 
+      <p>
       If the no-cache directive does specify one or more field-names,
       then a cache MAY use the response to satisfy a subsequent request,
       subject to any other restrictions on caching. However, the
@@ -5245,9 +5256,12 @@ the orginal document -->
       server. This allows an origin server to prevent the re-use of
       certain header fields in a response, while still allowing caching
       of the rest of the response.
+      </dd>
 
+       <p class="note">
        Note: Most HTTP/1.0 caches will not recognize or obey this
        directive.
+       </p>
 
 <h4 id="14.9.2">14.9.2 What May be Stored by Caches</h4>
 
