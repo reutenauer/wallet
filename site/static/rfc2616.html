@@ -7840,31 +7840,19 @@ the orginal document -->
    contents of a challenge itself can contain a comma-separated list of
    authentication parameters.
    </p>
-
 </div>
+
 <div id="section-15" class="section hide">
 <h2 id="15">15 Security Considerations</h2>
-
-   </p>
-
    <p>
    This section is meant to inform application developers, information
    providers, and users of the security limitations in HTTP/1.1 as
    described by this document. The discussion does not include
    definitive solutions to the problems revealed, though it does make
    some suggestions for reducing security risks.
-
    </p>
 
-   <p>
-
-
-
-
-15.1 Personal Information
-
-   </p>
-
+<h3 id="15.1">15.1 Personal Information</h3>
    <p>
    HTTP clients are often privy to large amounts of personal information
    (e.g. the user's name, location, mail address, passwords, encryption
@@ -7876,14 +7864,9 @@ the orginal document -->
    History shows that errors in this area often create serious security
    and/or privacy problems and generate highly adverse publicity for the
    implementor's company.
-
    </p>
 
-   <p>
-15.1.1 Abuse of Server Log Information
-
-   </p>
-
+<h3 id="15.1.1">15.1.1 Abuse of Server Log Information</h3>
    <p>
    A server is in the position to save personal data about a user's
    requests which might identify their reading patterns or subjects of
@@ -7892,14 +7875,9 @@ the orginal document -->
    the HTTP protocol to provide data are responsible for ensuring that
    such material is not distributed without the permission of any
    individuals that are identifiable by the published results.
-
    </p>
 
-   <p>
-15.1.2 Transfer of Sensitive Information
-
-   </p>
-
+<h3 id="15.1.2">15.1.2 Transfer of Sensitive Information</h3>
    <p>
    Like any generic data transfer protocol, HTTP cannot regulate the
    content of the data that is transferred, nor is there any a priori
@@ -7908,7 +7886,6 @@ the orginal document -->
    applications SHOULD supply as much control over this information as
    possible to the provider of that information. Four header fields are
    worth special mention in this context: Server, Via, Referer and From.
-
    </p>
 
    <p>
@@ -7916,7 +7893,6 @@ the orginal document -->
    server machine to become more vulnerable to attacks against software
    that is known to contain security holes. Implementors SHOULD make the
    Server header field a configurable option.
-
    </p>
 
    <p>
@@ -7925,23 +7901,15 @@ the orginal document -->
    that identifies the hosts behind the firewall. In particular, they
    SHOULD remove, or replace with sanitized versions, any Via fields
    generated behind the firewall.
-
    </p>
 
    <p>
    The Referer header allows reading patterns to be studied and reverse
    links drawn. Although it can be very useful, its power can be abused
    if user details are not separated from the information contained in
-
-
-
-
-
-
    the Referer. Even when the personal information has been removed, the
    Referer header might indicate a private document's URI whose
    publication would be inappropriate.
-
    </p>
 
    <p>
@@ -7951,14 +7919,12 @@ the orginal document -->
    enable, and modify the contents of the field. The user MUST be able
    to set the contents of this field within a user preference or
    application defaults configuration.
-
    </p>
 
    <p>
    We suggest, though do not require, that a convenient toggle interface
    be provided for the user to enable or disable the sending of From and
    Referer information.
-
    </p>
 
    <p>
@@ -7967,14 +7933,9 @@ the orginal document -->
    server have a particular security hole which might be exploited.
    Unfortunately, this same information is often used for other valuable
    purposes for which HTTP currently has no better mechanism.
-
    </p>
 
-   <p>
-15.1.3 Encoding Sensitive Information in URI's
-
-   </p>
-
+<h4 id="15.1.3">15.1.3 Encoding Sensitive Information in URI's</h4>
    <p>
    Because the source of a link might be private information or might
    reveal an otherwise private information source, it is strongly
@@ -7983,14 +7944,12 @@ the orginal document -->
    toggle switch for browsing openly/anonymously, which would
    respectively enable/disable the sending of Referer and From
    information.
-
    </p>
 
    <p>
    Clients SHOULD NOT include a Referer header field in a (non-secure)
    HTTP request if the referring page was transferred with a secure
    protocol.
-
    </p>
 
    <p>
@@ -8000,30 +7959,19 @@ the orginal document -->
    servers, proxies, and user agents will log the request URI in some
    place where it might be visible to third parties. Servers can use
    POST-based form submission instead
-
    </p>
 
-   <p>
-15.1.4 Privacy Issues Connected to Accept Headers
-
-   </p>
-
+<h4 id="15.1.4">15.1.4 Privacy Issues Connected to Accept Headers</h4>
    <p>
    Accept request-headers can reveal information about the user to all
    servers which are accessed. The Accept-Language header in particular
    can reveal information the user would consider to be of a private
    nature, because the understanding of particular languages is often
-
-
-
-
-
    strongly correlated to the membership of a particular ethnic group.
    User agents which offer the option to configure the contents of an
    Accept-Language header to be sent in every request are strongly
    encouraged to let the configuration process include a message which
    makes the user aware of the loss of privacy involved.
-
    </p>
 
    <p>
@@ -8033,7 +7981,6 @@ the orginal document -->
    server if it detects, by looking for any Vary response-header fields
    generated by the server, that such sending could improve the quality
    of service.
-
    </p>
 
    <p>
@@ -8052,14 +7999,9 @@ the orginal document -->
    General purpose user agents which provide a high degree of header
    configurability SHOULD warn users about the loss of privacy which can
    be involved.
-
    </p>
 
-   <p>
-15.2 Attacks Based On File and Path Names
-
-   </p>
-
+<h3 id="15.2">15.2 Attacks Based On File and Path Names</h3>
    <p>
    Implementations of HTTP origin servers SHOULD be careful to restrict
    the documents returned by HTTP requests to be only those that were
@@ -8077,26 +8019,15 @@ the orginal document -->
    inappropriate retrieval, since they might contain sensitive
    information. Experience has shown that minor bugs in such HTTP server
    implementations have turned into security risks.
-
    </p>
 
-   <p>
-
-
-
-
-
-15.3 DNS Spoofing
-
-   </p>
-
+<h3 id="15.3.">15.3 DNS Spoofing</h3>
    <p>
    Clients using HTTP rely heavily on the Domain Name Service, and are
    thus generally prone to security attacks based on the deliberate
    mis-association of IP addresses and DNS names. Clients need to be
    cautious in assuming the continuing validity of an IP number/DNS name
    association.
-
    </p>
 
    <p>
@@ -8108,14 +8039,12 @@ the orginal document -->
    be cached, however, only when the TTL (Time To Live) information
    reported by the name server makes it likely that the cached
    information will remain useful.
-
    </p>
 
    <p>
    If HTTP clients cache the results of host name lookups in order to
    achieve a performance improvement, they MUST observe the TTL
    information reported by DNS.
-
    </p>
 
    <p>
@@ -8124,7 +8053,6 @@ the orginal document -->
    renumbering is expected to become increasingly common [24], the
    possibility of this form of attack will grow. Observing this
    requirement thus reduces this potential security vulnerability.
-
    </p>
 
    <p>
@@ -8132,28 +8060,18 @@ the orginal document -->
    for replicated servers using the same DNS name and reduces the
    likelihood of a user's experiencing failure in accessing sites which
    use that strategy.
-
    </p>
 
-   <p>
-15.4 Location Headers and Spoofing
-
-   </p>
-
+<h3 id="15.4">15.4 Location Headers and Spoofing</h3>
    <p>
    If a single server supports multiple organizations that do not trust
    one another, then it MUST check the values of Location and Content-
    Location headers in responses that are generated under control of
    said organizations to make sure that they do not attempt to
    invalidate resources over which they have no authority.
-
    </p>
 
-   <p>
-15.5 Content-Disposition Issues
-
-   </p>
-
+<h3 id="15.5">15.5 Content-Disposition Issues</h3>
    <p>
    RFC 1806 [35], from which the often implemented Content-Disposition
    (see section 19.5.1) header in HTTP is derived, has a number of very
@@ -8161,18 +8079,9 @@ the orginal document -->
    the HTTP standard, but since it is widely implemented, we are
    documenting its use and risks for implementors. See RFC 2183 [49]
    (which updates RFC 1806) for details.
-
    </p>
 
-   <p>
-
-
-
-
-15.6 Authentication Credentials and Idle Clients
-
-   </p>
-
+<h3 id="15.6">15.6 Authentication Credentials and Idle Clients</h3>
    <p>
    Existing HTTP clients and user agents typically retain authentication
    information indefinitely. HTTP/1.1. does not provide a method for a
@@ -8180,20 +8089,22 @@ the orginal document -->
    a significant defect that requires further extensions to HTTP.
    Circumstances under which credential caching can interfere with the
    application's security model include but are not limited to:
-
    </p>
 
-   <p>
-      - Clients which have been idle for an extended period following
+      <ul>
+        <li>
+        Clients which have been idle for an extended period following
         which the server might wish to cause the client to reprompt the
         user for credentials.
+        </li>
 
-      - Applications which include a session termination indication
+        <li>
+        Applications which include a session termination indication
         (such as a `logout' or `commit' button on a page) after which
         the server side of the application `knows' that there is no
         further reason for the client to retain the credentials.
-
-   </p>
+        </li>
+      </ul>
 
    <p>
    This is currently under separate study. There are a number of work-
@@ -8203,14 +8114,9 @@ the orginal document -->
    problem. In particular, user agents which cache credentials are
    encouraged to provide a readily accessible mechanism for discarding
    cached credentials under user control.
-
    </p>
 
-   <p>
-15.7 Proxies and Caching
-
-   </p>
-
+<h3 id="15.7">15.7 Proxies and Caching</h3>
    <p>
    By their very nature, HTTP proxies are men-in-the-middle, and
    represent an opportunity for man-in-the-middle attacks. Compromise of
@@ -8221,7 +8127,6 @@ the orginal document -->
    content providers. A compromised proxy, or a proxy implemented or
    configured without regard to security and privacy considerations,
    might be used in the commission of a wide range of potential attacks.
-
    </p>
 
    <p>
@@ -8232,17 +8137,9 @@ the orginal document -->
    about organizations. Log information should be carefully guarded, and
    appropriate guidelines for use developed and followed. (Section
    15.1.1).
-
    </p>
 
    <p>
-
-
-
-
-
-
-
    Caching proxies provide additional potential vulnerabilities, since
    the contents of the cache represent an attractive target for
    malicious exploitation. Because cache contents persist after an HTTP
@@ -8250,7 +8147,6 @@ the orginal document -->
    long after a user believes that the information has been removed from
    the network. Therefore, cache contents should be protected as
    sensitive information.
-
    </p>
 
    <p>
@@ -8258,40 +8154,28 @@ the orginal document -->
    implications of their design and coding decisions, and of the
    configuration options they provide to proxy operators (especially the
    default configuration).
-
    </p>
 
    <p>
    Users of a proxy need to be aware that they are no trustworthier than
    the people who run the proxy; HTTP itself cannot solve this problem.
-
    </p>
 
    <p>
    The judicious use of cryptography, when appropriate, may suffice to
    protect against a broad range of security and privacy attacks. Such
    cryptography is beyond the scope of the HTTP/1.1 specification.
-
    </p>
 
-   <p>
-15.7.1 Denial of Service Attacks on Proxies
-
-   </p>
-
+<h4 id="15.7.1">15.7.1 Denial of Service Attacks on Proxies</h4>
    <p>
    They exist. They are hard to defend against. Research continues.
    Beware.
-
    </p>
-
-   <p>
 </div>
+
 <div id="section-16" class="section hide">
 <h2 id="16">16 Acknowledgments</h2>
-
-   </p>
-
    <p>
    This specification makes heavy use of the augmented BNF and generic
    constructs defined by David H. Crocker for RFC 822 [9]. Similarly, it
@@ -8299,7 +8183,6 @@ the orginal document -->
    Ned Freed for MIME [7]. We hope that their inclusion in this
    specification will help reduce past confusion over the relationship
    between HTTP and Internet mail message formats.
-
    </p>
 
    <p>
@@ -8313,21 +8196,16 @@ the orginal document -->
    McCool, Lou Montulli, Dave Raggett, Tony Sanders, and Marc
    VanHeyningen deserve special recognition for their efforts in
    defining early aspects of the protocol.
-
    </p>
 
    <p>
    This document has benefited greatly from the comments of all those
    participating in the HTTP-WG. In addition to those already mentioned,
    the following individuals have contributed to this specification:
-
    </p>
 
+   <!-- FIXME Make a table or something -->
    <p>
-
-
-
-
        Gary Adams                  Ross Patterson
        Harald Tveit Alvestrand     Albert Lunde
        Keith Ball                  John C. Mallery
@@ -8354,27 +8232,22 @@ the orginal document -->
        Ben Laurie                  Francois Yergeau
        Paul J. Leach               Mary Ellen Zurko
        Daniel DuBois               Josh Cohen
-
    </p>
 
    <p>
-
    Much of the content and presentation of the caching design is due to
    suggestions and comments from individuals including: Shel Kaphan,
    Paul Leach, Koen Holtman, David Morris, and Larry Masinter.
-
    </p>
 
    <p>
    Most of the specification of ranges is based on work originally done
    by Ari Luotonen and John Franks, with additional input from Steve
    Zilles.
-
    </p>
 
    <p>
    Thanks to the "cave men" of Palo Alto. You know who you are.
-
    </p>
 
    <p>
@@ -8384,86 +8257,63 @@ the orginal document -->
    Holtman, John Franks, Josh Cohen, Alex Hopmann, Scott Lawrence, and
    Larry Masinter for their help. And thanks go particularly to Jeff
    Mogul and Scott Lawrence for performing the "MUST/MAY/SHOULD" audit.
-
    </p>
 
    <p>
-
-
-
-
-
-
-
-
    The Apache Group, Anselm Baird-Smith, author of Jigsaw, and Henrik
    Frystyk implemented RFC 2068 early, and we wish to thank them for the
    discovery of many of the problems that this document attempts to
    rectify.
-
    </p>
-
-   <p>
 </div>
+
 <div id="section-17" class="section hide">
 <h2 id="17">17 References</h2>
-
-   </p>
-
    <p>
    [1] Alvestrand, H., "Tags for the Identification of Languages", RFC
        1766, March 1995.
-
    </p>
 
    <p>
    [2] Anklesaria, F., McCahill, M., Lindner, P., Johnson, D., Torrey,
        D. and B. Alberti, "The Internet Gopher Protocol (a distributed
        document search and retrieval protocol)", RFC 1436, March 1993.
-
    </p>
 
    <p>
    [3] Berners-Lee, T., "Universal Resource Identifiers in WWW", RFC
        1630, June 1994.
-
    </p>
 
    <p>
    [4] Berners-Lee, T., Masinter, L. and M. McCahill, "Uniform Resource
        Locators (URL)", RFC 1738, December 1994.
-
    </p>
 
    <p>
    [5] Berners-Lee, T. and D. Connolly, "Hypertext Markup Language -
        2.0", RFC 1866, November 1995.
-
    </p>
 
    <p>
    [6] Berners-Lee, T., Fielding, R. and H. Frystyk, "Hypertext Transfer
        Protocol -- HTTP/1.0", RFC 1945, May 1996.
-
    </p>
 
    <p>
    [7] Freed, N. and N. Borenstein, "Multipurpose Internet Mail
        Extensions (MIME) Part One: Format of Internet Message Bodies",
        RFC 2045, November 1996.
-
    </p>
 
    <p>
    [8] Braden, R., "Requirements for Internet Hosts -- Communication
        Layers", STD 3, RFC 1123, October 1989.
-
    </p>
 
    <p>
    [9] Crocker, D., "Standard for The Format of ARPA Internet Text
        Messages", STD 11, RFC 822, August 1982.
-
    </p>
 
    <p>
@@ -8471,80 +8321,62 @@ the orginal document -->
         Sui, J., and M. Grinbaum, "WAIS Interface Protocol Prototype
         Functional Specification," (v1.5), Thinking Machines
         Corporation, April 1990.
-
    </p>
 
    <p>
    [11] Fielding, R., "Relative Uniform Resource Locators", RFC 1808,
         June 1995.
-
    </p>
 
    <p>
    [12] Horton, M. and R. Adams, "Standard for Interchange of USENET
         Messages", RFC 1036, December 1987.
-
    </p>
 
    <p>
-
-
-
-
-
-
    [13] Kantor, B. and P. Lapsley, "Network News Transfer Protocol", RFC
         977, February 1986.
-
    </p>
 
    <p>
    [14] Moore, K., "MIME (Multipurpose Internet Mail Extensions) Part
         Three: Message Header Extensions for Non-ASCII Text", RFC 2047,
         November 1996.
-
    </p>
 
    <p>
    [15] Nebel, E. and L. Masinter, "Form-based File Upload in HTML", RFC
         1867, November 1995.
-
    </p>
 
    <p>
    [16] Postel, J., "Simple Mail Transfer Protocol", STD 10, RFC 821,
         August 1982.
-
    </p>
 
    <p>
    [17] Postel, J., "Media Type Registration Procedure", RFC 1590,
         November 1996.
-
    </p>
 
    <p>
    [18] Postel, J. and J. Reynolds, "File Transfer Protocol", STD 9, RFC
         959, October 1985.
-
    </p>
 
    <p>
    [19] Reynolds, J. and J. Postel, "Assigned Numbers", STD 2, RFC 1700,
         October 1994.
-
    </p>
 
    <p>
    [20] Sollins, K. and L. Masinter, "Functional Requirements for
         Uniform Resource Names", RFC 1737, December 1994.
-
    </p>
 
    <p>
    [21] US-ASCII. Coded Character Set - 7-Bit American Standard Code for
         Information Interchange. Standard ANSI X3.4-1986, ANSI, 1986.
-
    </p>
 
    <p>
@@ -8559,32 +8391,24 @@ the orginal document -->
         Part 7: Latin/Greek alphabet, ISO-8859-7, 1987.
         Part 8: Latin/Hebrew alphabet, ISO-8859-8, 1988.
         Part 9: Latin alphabet No. 5, ISO-8859-9, 1990.
-
    </p>
 
    <p>
    [23] Meyers, J. and M. Rose, "The Content-MD5 Header Field", RFC
         1864, October 1995.
-
    </p>
 
    <p>
    [24] Carpenter, B. and Y. Rekhter, "Renumbering Needs Work", RFC
         1900, February 1996.
-
    </p>
 
    <p>
    [25] Deutsch, P., "GZIP file format specification version 4.3", RFC
         1952, May 1996.
-
    </p>
 
    <p>
-
-
-
-
    [26] Venkata N. Padmanabhan, and Jeffrey C. Mogul. "Improving HTTP
         Latency", Computer Networks and ISDN Systems, v. 28, pp. 25-35,
         Dec. 1995. Slightly revised version of paper in Proc. 2nd
@@ -8592,7 +8416,6 @@ the orginal document -->
         which is available at
         http://www.ncsa.uiuc.edu/SDG/IT94/Proceedings/DDay/mogul/HTTPLat
         ency.html.
-
    </p>
 
    <p>
@@ -8600,77 +8423,60 @@ the orginal document -->
         Performance", &lt;URL: http://www.isi.edu/touch/pubs/http-perf96/&gt;,
         ISI Research Report ISI/RR-98-463, (original report dated Aug.
         1996), USC/Information Sciences Institute, August 1998.
-
    </p>
 
    <p>
    [28] Mills, D., "Network Time Protocol (Version 3) Specification,
         Implementation and Analysis", RFC 1305, March 1992.
-
    </p>
 
    <p>
    [29] Deutsch, P., "DEFLATE Compressed Data Format Specification
         version 1.3", RFC 1951, May 1996.
-
    </p>
 
    <p>
    [30] S. Spero, "Analysis of HTTP Performance Problems,"
         http://sunsite.unc.edu/mdma-release/http-prob.html.
-
    </p>
 
    <p>
    [31] Deutsch, P. and J. Gailly, "ZLIB Compressed Data Format
         Specification version 3.3", RFC 1950, May 1996.
-
    </p>
 
    <p>
    [32] Franks, J., Hallam-Baker, P., Hostetler, J., Leach, P.,
         Luotonen, A., Sink, E. and L. Stewart, "An Extension to HTTP:
         Digest Access Authentication", RFC 2069, January 1997.
-
    </p>
 
    <p>
    [33] Fielding, R., Gettys, J., Mogul, J., Frystyk, H. and T.
         Berners-Lee, "Hypertext Transfer Protocol -- HTTP/1.1", RFC
         2068, January 1997.
-
    </p>
 
    <p>
    [34] Bradner, S., "Key words for use in RFCs to Indicate Requirement
         Levels", BCP 14, RFC 2119, March 1997.
-
    </p>
 
    <p>
    [35] Troost, R. and Dorner, S., "Communicating Presentation
         Information in Internet Messages: The Content-Disposition
         Header", RFC 1806, June 1995.
-
    </p>
 
    <p>
    [36] Mogul, J., Fielding, R., Gettys, J. and H. Frystyk, "Use and
         Interpretation of HTTP Version Numbers", RFC 2145, May 1997.
         [jg639]
-
    </p>
 
    <p>
    [37] Palme, J., "Common Internet Message Headers", RFC 2076, February
         1997. [jg640]
-
-
-
-
-
-
-
    </p>
 
    <p>
@@ -8684,27 +8490,23 @@ the orginal document -->
         Lie, H., and C. Lilley. "Network Performance Effects of
         HTTP/1.1, CSS1, and PNG," Proceedings of ACM SIGCOMM '97, Cannes
         France, September 1997.[jg642]
-
    </p>
 
    <p>
    [40] Freed, N. and N. Borenstein, "Multipurpose Internet Mail
         Extensions (MIME) Part Two: Media Types", RFC 2046, November
         1996. [jg643]
-
    </p>
 
    <p>
    [41] Alvestrand, H., "IETF Policy on Character Sets and Languages",
         BCP 18, RFC 2277, January 1998. [jg644]
-
    </p>
 
    <p>
    [42] Berners-Lee, T., Fielding, R. and L. Masinter, "Uniform Resource
         Identifiers (URI): Generic Syntax and Semantics", RFC 2396,
         August 1998. [jg645]
-
    </p>
 
    <p>
@@ -8712,218 +8514,137 @@ the orginal document -->
         Leach, P., Luotonen, A., Sink, E. and L. Stewart, "HTTP
         Authentication: Basic and Digest Access Authentication", RFC
         2617, June 1999. [jg646]
-
    </p>
 
    <p>
    [44] Luotonen, A., "Tunneling TCP based protocols through Web proxy
         servers," Work in Progress. [jg647]
-
    </p>
 
    <p>
    [45] Palme, J. and A. Hopmann, "MIME E-mail Encapsulation of
         Aggregate Documents, such as HTML (MHTML)", RFC 2110, March
         1997.
-
    </p>
 
    <p>
    [46] Bradner, S., "The Internet Standards Process -- Revision 3", BCP
         9, RFC 2026, October 1996.
-
    </p>
 
    <p>
    [47] Masinter, L., "Hyper Text Coffee Pot Control Protocol
         (HTCPCP/1.0)", RFC 2324, 1 April 1998.
-
    </p>
 
    <p>
    [48] Freed, N. and N. Borenstein, "Multipurpose Internet Mail
         Extensions (MIME) Part Five: Conformance Criteria and Examples",
         RFC 2049, November 1996.
-
    </p>
 
    <p>
    [49] Troost, R., Dorner, S. and K. Moore, "Communicating Presentation
         Information in Internet Messages: The Content-Disposition Header
         Field", RFC 2183, August 1997.
-
    </p>
-
-   <p>
-
-
-
-
-
-
-
-
 </div>
+
 <div id="section-18" class="section hide">
 <h2 id="18">18 Authors' Addresses</h2>
-
-   </p>
 
    <p>
    Roy T. Fielding
    Information and Computer Science
    University of California, Irvine
    Irvine, CA 92697-3425, USA
-
    </p>
 
    <p>
    Fax: +1 (949) 824-1715
    EMail: fielding@ics.uci.edu
-
    </p>
 
    <p>
-
    James Gettys
    World Wide Web Consortium
    MIT Laboratory for Computer Science
    545 Technology Square
    Cambridge, MA 02139, USA
-
    </p>
 
    <p>
    Fax: +1 (617) 258 8682
    EMail: jg@w3.org
-
    </p>
 
    <p>
-
    Jeffrey C. Mogul
    Western Research Laboratory
    Compaq Computer Corporation
    250 University Avenue
    Palo Alto, California, 94305, USA
-
    </p>
 
    <p>
    EMail: mogul@wrl.dec.com
-
    </p>
 
    <p>
-
    Henrik Frystyk Nielsen
    World Wide Web Consortium
    MIT Laboratory for Computer Science
    545 Technology Square
    Cambridge, MA 02139, USA
-
    </p>
 
    <p>
    Fax: +1 (617) 258 8682
    EMail: frystyk@w3.org
-
    </p>
 
    <p>
-
    Larry Masinter
    Xerox Corporation
    3333 Coyote Hill Road
    Palo Alto, CA 94034, USA
-
    </p>
 
    <p>
    EMail: masinter@parc.xerox.com
-
    </p>
 
    <p>
-
-
-
-
-
-
    Paul J. Leach
    Microsoft Corporation
    1 Microsoft Way
    Redmond, WA 98052, USA
-
    </p>
 
    <p>
    EMail: paulle@microsoft.com
-
    </p>
 
    <p>
-
    Tim Berners-Lee
    Director, World Wide Web Consortium
    MIT Laboratory for Computer Science
    545 Technology Square
    Cambridge, MA 02139, USA
-
    </p>
 
    <p>
    Fax: +1 (617) 258 8682
    EMail: timbl@w3.org
-
    </p>
 
    <p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
+
 <div id="section-19" class="section hide">
 <h2 id="19">19 Appendices</h2>
 
-19.1 Internet Media Type message/http and application/http
-
-   </p>
-
+<h3 id="19.3">19.1 Internet Media Type message/http and application/http</h3>
    <p>
    In addition to defining the HTTP/1.1 protocol, this document serves
    as the specification for the Internet media type "message/http" and
@@ -8933,10 +8654,9 @@ the orginal document -->
    encodings. The application/http type can be used to enclose a
    pipeline of one or more HTTP request or response messages (not
    intermixed). The following is to be registered with IANA [17].
-
    </p>
 
-   <p>
+       <pre>
        Media Type name:         message
        Media subtype name:      http
        Required parameters:     none
@@ -8966,28 +8686,15 @@ the orginal document -->
                  Content-Transfer-Encoding is required when
                  transmitted via E-mail.
        Security considerations: none
+       </pre>
 
-
-
-
-
-
-
-
-
-
-
-19.2 Internet Media Type multipart/byteranges
-
-   </p>
-
+<h3 id="19.2">19.2 Internet Media Type multipart/byteranges</h3>
    <p>
    When an HTTP 206 (Partial Content) response message includes the
    content of multiple ranges (a response to a request for multiple
    non-overlapping ranges), these are transmitted as a multipart
    message-body. The media type for this purpose is called
    "multipart/byteranges".
-
    </p>
 
    <p>
@@ -8995,10 +8702,9 @@ the orginal document -->
    with its own Content-Type and Content-Range fields. The required
    boundary parameter specifies the boundary string used to separate
    each body-part.
-
    </p>
 
-   <p>
+       <pre>
        Media Type name:         multipart
        Media subtype name:      byteranges
        Required parameters:     boundary
@@ -9006,77 +8712,60 @@ the orginal document -->
        Encoding considerations: only "7bit", "8bit", or "binary" are
                                 permitted
        Security considerations: none
-
-   </p>
+       </pre>
 
    <p>
-
    For example:
-
    </p>
 
-   <p>
+   <pre>
    HTTP/1.1 206 Partial Content
    Date: Wed, 15 Nov 1995 06:25:24 GMT
    Last-Modified: Wed, 15 Nov 1995 04:58:08 GMT
    Content-type: multipart/byteranges; boundary=THIS_STRING_SEPARATES
 
-   </p>
-
-   <p>
    --THIS_STRING_SEPARATES
    Content-type: application/pdf
    Content-range: bytes 500-999/8000
 
-   </p>
-
-   <p>
    ...the first range...
    --THIS_STRING_SEPARATES
    Content-type: application/pdf
    Content-range: bytes 7000-7999/8000
 
-   </p>
-
-   <p>
    ...the second range
    --THIS_STRING_SEPARATES--
+   </pre>
 
-   </p>
-
-   <p>
+      <p class="note">
       Notes:
+      </p>
 
+      <p class="note">
       1) Additional CRLFs may precede the first boundary string in the
          entity.
+      </p>
 
-
-
-
-
-
-
-
+      <p class="note">
       2) Although RFC 2046 [40] permits the boundary string to be
          quoted, some existing implementations handle a quoted boundary
          string incorrectly.
+      </p>
 
+      <p class="note">
       3) A number of browsers and servers were coded to an early draft
          of the byteranges specification to use a media type of
          multipart/x-byteranges, which is almost, but not quite
          compatible with the version documented in HTTP/1.1.
+      </p>
 
-19.3 Tolerant Applications
-
-   </p>
-
+<h3 id="19.3">19.3 Tolerant Applications</h3>
    <p>
    Although this document specifies the requirements for the generation
    of HTTP/1.1 messages, not all applications will be correct in their
    implementation. We therefore recommend that operational applications
    be tolerant of deviations whenever those deviations can be
    interpreted unambiguously.
-
    </p>
 
    <p>
@@ -9084,14 +8773,12 @@ the orginal document -->
    tolerant when parsing the Request-Line. In particular, they SHOULD
    accept any amount of SP or HT characters between fields, even though
    only a single SP is required.
-
    </p>
 
    <p>
    The line terminator for message-header fields is the sequence CRLF.
    However, we recommend that applications, when parsing such headers,
    recognize a single LF as a line terminator and ignore the leading CR.
-
    </p>
 
    <p>
@@ -9100,42 +8787,40 @@ the orginal document -->
    the exception that not labeling the entity is preferred over labeling
    the entity with the labels US-ASCII or ISO-8859-1. See section 3.7.1
    and 3.4.1.
-
    </p>
 
    <p>
    Additional rules for requirements on parsing and encoding of dates
    and other potential problems with date encodings include:
-
    </p>
 
-   <p>
-      - HTTP/1.1 clients and caches SHOULD assume that an RFC-850 date
+      <ul>
+        <li>
+        HTTP/1.1 clients and caches SHOULD assume that an RFC-850 date
         which appears to be more than 50 years in the future is in fact
         in the past (this helps solve the "year 2000" problem).
+        </li>
 
-      - An HTTP/1.1 implementation MAY internally represent a parsed
+        <li>
+        An HTTP/1.1 implementation MAY internally represent a parsed
         Expires date as earlier than the proper value, but MUST NOT
         internally represent a parsed Expires date as later than the
         proper value.
+        </li>
 
-      - All expiration-related calculations MUST be done in GMT. The
+        <li>
+        All expiration-related calculations MUST be done in GMT. The
         local time zone MUST NOT influence the calculation or comparison
         of an age or expiration time.
+        </li>
 
-
-
-
-
-
-      - If an HTTP header incorrectly carries a date value with a time
+        <li>
+        If an HTTP header incorrectly carries a date value with a time
         zone other than GMT, it MUST be converted into GMT using the
         most conservative possible conversion.
+      </ul>
 
-19.4 Differences Between HTTP Entities and RFC 2045 Entities
-
-   </p>
-
+<h3 id="19.4">19.4 Differences Between HTTP Entities and RFC 2045 Entities</h3>
    <p>
    HTTP/1.1 uses many of the constructs defined for Internet Mail (RFC
    822 [9]) and the Multipurpose Internet Mail Extensions (MIME [7]) to
@@ -9147,7 +8832,6 @@ the orginal document -->
    freedom in the use of new media types, to make date comparisons
    easier, and to acknowledge the practice of some early HTTP servers
    and clients.
-
    </p>
 
    <p>
@@ -9157,14 +8841,9 @@ the orginal document -->
    where necessary. Proxies and gateways from MIME environments to HTTP
    also need to be aware of the differences because some conversions
    might be required.
-
    </p>
 
-   <p>
-19.4.1 MIME-Version
-
-   </p>
-
+<h4 id="19.4.1">19.4.1 MIME-Version</h4>
    <p>
    HTTP is not a MIME-compliant protocol. However, HTTP/1.1 messages MAY
    include a single MIME-Version general-header field to indicate what
@@ -9173,26 +8852,19 @@ the orginal document -->
    full compliance with the MIME protocol (as defined in RFC 2045[7]).
    Proxies/gateways are responsible for ensuring full compliance (where
    possible) when exporting HTTP messages to strict MIME environments.
-
    </p>
 
-   <p>
+       <p>
        MIME-Version   = "MIME-Version" ":" 1*DIGIT "." 1*DIGIT
-
-   </p>
+       </p>
 
    <p>
    MIME version "1.0" is the default for use in HTTP/1.1. However,
    HTTP/1.1 message parsing and semantics are defined by this document
    and not the MIME specification.
-
    </p>
 
-   <p>
-19.4.2 Conversion to Canonical Form
-
-   </p>
-
+<h4 id="19.4.2">19.4.2 Conversion to Canonical Form</h4>
    <p>
    RFC 2045 [7] requires that an Internet mail entity be converted to
    canonical form prior to being transferred, as described in section 4
@@ -9200,15 +8872,9 @@ the orginal document -->
    allowed for subtypes of the "text" media type when transmitted over
    HTTP. RFC 2046 requires that content with a type of "text" represent
    line breaks as CRLF and forbids the use of CR or LF outside of line
-
-
-
-
-
    break sequences. HTTP allows CRLF, bare CR, and bare LF to indicate a
    line break within text content when a message is transmitted over
    HTTP.
-
    </p>
 
    <p>
@@ -9220,7 +8886,6 @@ the orginal document -->
    allows the use of some character sets which do not use octets 13 and
    10 to represent CR and LF, as is the case for some multi-byte
    character sets.
-
    </p>
 
    <p>
@@ -9228,28 +8893,18 @@ the orginal document -->
    checksums applied to the original content unless the original content
    is already in canonical form. Therefore, the canonical form is
    recommended for any content that uses such checksums in HTTP.
-
    </p>
 
-   <p>
-19.4.3 Conversion of Date Formats
-
-   </p>
-
+<h4 id="19.4.3">19.4.3 Conversion of Date Formats</h4>
    <p>
    HTTP/1.1 uses a restricted set of date formats (section 3.3.1) to
    simplify the process of date comparison. Proxies and gateways from
    other protocols SHOULD ensure that any Date header field present in a
    message conforms to one of the HTTP/1.1 formats and rewrite the date
    if necessary.
-
    </p>
 
-   <p>
-19.4.4 Introduction of Content-Encoding
-
-   </p>
-
+<h4 id="19.4.4">19.4.4 Introduction of Content-Encoding</h4>
    <p>
    RFC 2045 does not include any concept equivalent to HTTP/1.1's
    Content-Encoding header field. Since this acts as a modifier on the
@@ -9260,60 +8915,42 @@ the orginal document -->
    a media-type parameter of ";conversions=<content-coding>" to perform
    a function equivalent to Content-Encoding. However, this parameter is
    not part of RFC 2045.)
-
    </p>
 
-   <p>
-19.4.5 No Content-Transfer-Encoding
-
-   </p>
-
+<h4 id="19.4.5">19.4.5 No Content-Transfer-Encoding</h4>
    <p>
    HTTP does not use the Content-Transfer-Encoding (CTE) field of RFC
    2045. Proxies and gateways from MIME-compliant protocols to HTTP MUST
    remove any non-identity CTE ("quoted-printable" or "base64") encoding
    prior to delivering the response message to an HTTP client.
-
    </p>
 
    <p>
    Proxies and gateways from HTTP to MIME-compliant protocols are
    responsible for ensuring that the message is in the correct format
    and encoding for safe transport on that protocol, where "safe
-
-
-
-
-
    transport" is defined by the limitations of the protocol being used.
    Such a proxy or gateway SHOULD label the data with an appropriate
    Content-Transfer-Encoding if doing so will improve the likelihood of
    safe transport over the destination protocol.
-
    </p>
 
-   <p>
-19.4.6 Introduction of Transfer-Encoding
-
-   </p>
-
+<h4 id="19.4.6">19.4.6 Introduction of Transfer-Encoding</h4>
    <p>
    HTTP/1.1 introduces the Transfer-Encoding header field (section
    14.41). Proxies/gateways MUST remove any transfer-coding prior to
    forwarding a message via a MIME-compliant protocol.
-
    </p>
 
    <p>
    A process for decoding the "chunked" transfer-coding (section 3.6)
    can be represented in pseudo-code as:
-
    </p>
 
-   <p>
+       <pre>
        length := 0
        read chunk-size, chunk-extension (if any) and CRLF
-       while (chunk-size > 0) {
+       while (chunk-size &gt; 0) {
           read chunk-data and CRLF
           append chunk-data to entity-body
           length := length + chunk-size
@@ -9326,11 +8963,9 @@ the orginal document -->
        }
        Content-Length := length
        Remove "chunked" from Transfer-Encoding
+       </pre>
 
-19.4.7 MHTML and Line Length Limitations
-
-   </p>
-
+<h4 id="19.4.7">19.4.7 MHTML and Line Length Limitations</h4>
    <p>
    HTTP implementations which share code with MHTML [45] implementations
    need to be aware of MIME line length limitations. Since HTTP does not
@@ -9340,51 +8975,34 @@ the orginal document -->
    HTTP transports all message-bodies as payload (see section 3.7.2) and
    does not interpret the content or any MIME header lines that might be
    contained therein.
-
    </p>
 
-   <p>
-19.5 Additional Features
-
-   </p>
-
+<h3 id="19.5">19.5 Additional Features</h3>
    <p>
    RFC 1945 and RFC 2068 document protocol elements used by some
    existing HTTP implementations, but not consistently and correctly
    across most HTTP/1.1 applications. Implementors are advised to be
    aware of these features, but cannot rely upon their presence in, or
    interoperability with, other HTTP/1.1 applications. Some of these
-
-
-
-
-
    describe proposed experimental features, and some describe features
    that experimental deployment found lacking that are now addressed in
    the base HTTP/1.1 specification.
-
    </p>
 
    <p>
    A number of other headers, such as Content-Disposition and Title,
    from SMTP and MIME are also often implemented (see RFC 2076 [37]).
-
    </p>
 
-   <p>
-19.5.1 Content-Disposition
-
-   </p>
-
+<h4 id="19.5.1">19.5.1 Content-Disposition</h4>
    <p>
    The Content-Disposition response-header field has been proposed as a
    means for the origin server to suggest a default filename if the user
    requests that the content is saved to a file. This usage is derived
    from the definition of Content-Disposition in RFC 1806 [35].
-
    </p>
 
-   <p>
+        <pre>
         content-disposition = "Content-Disposition" ":"
                               disposition-type *( ";" disposition-parm )
         disposition-type = "attachment" | disp-extension-token
@@ -9392,25 +9010,21 @@ the orginal document -->
         filename-parm = "filename" "=" quoted-string
         disp-extension-token = token
         disp-extension-parm = token "=" ( token | quoted-string )
-
-   </p>
+        </pre>
 
    <p>
    An example is
-
    </p>
 
-   <p>
+        <pre>
         Content-Disposition: attachment; filename="fname.ext"
-
-   </p>
+        </pre>
 
    <p>
    The receiving user agent SHOULD NOT respect any directory path
    information present in the filename-parm parameter, which is the only
    parameter believed to apply to HTTP implementations at this time. The
    filename SHOULD be treated as a terminal component only.
-
    </p>
 
    <p>
@@ -9418,57 +9032,53 @@ the orginal document -->
    stream content-type, the implied suggestion is that the user agent
    should not display the response, but directly enter a `save response
    as...' dialog.
-
    </p>
 
    <p>
    See section 15.5 for Content-Disposition security issues.
-
    </p>
 
-   <p>
-19.6 Compatibility with Previous Versions
-
-   </p>
-
+<h3 id="19.6">19.6 Compatibility with Previous Versions</h3>
    <p>
    It is beyond the scope of a protocol specification to mandate
    compliance with previous versions. HTTP/1.1 was deliberately
    designed, however, to make supporting previous versions easy. It is
    worth noting that, at the time of composing this specification
    (1996), we would expect commercial HTTP/1.1 servers to:
-
    </p>
 
-   <p>
-      - recognize the format of the Request-Line for HTTP/0.9, 1.0, and
+      <ul>
+        <li>
+        recognize the format of the Request-Line for HTTP/0.9, 1.0, and
         1.1 requests;
+        </li>
 
-
-
-
-
-      - understand any valid request in the format of HTTP/0.9, 1.0, or
+        <li>
+        understand any valid request in the format of HTTP/0.9, 1.0, or
         1.1;
+        </li>
 
-      - respond appropriately with a message in the same major version
+        <li>
+        respond appropriately with a message in the same major version
         used by the client.
-
-   </p>
+        </li>
+      </ul>
 
    <p>
    And we would expect HTTP/1.1 clients to:
-
    </p>
 
-   <p>
-      - recognize the format of the Status-Line for HTTP/1.0 and 1.1
+      <ul>
+        <li>
+        recognize the format of the Status-Line for HTTP/1.0 and 1.1
         responses;
+        </li>
 
-      - understand any valid response in the format of HTTP/0.9, 1.0, or
+        <li>
+        understand any valid response in the format of HTTP/0.9, 1.0, or
         1.1.
-
-   </p>
+        </li>
+      </ul>
 
    <p>
    For most implementations of HTTP/1.0, each connection is established
@@ -9476,33 +9086,23 @@ the orginal document -->
    sending the response. Some implementations implement the Keep-Alive
    version of persistent connections described in section 19.7.1 of RFC
    2068 [33].
-
    </p>
 
    <p>
-19.6.1 Changes from HTTP/1.0
-
-   </p>
+<h4 id="19.6.1">19.6.1 Changes from HTTP/1.0</h4>
 
    <p>
    This section summarizes major differences between versions HTTP/1.0
    and HTTP/1.1.
-
    </p>
 
-   <p>
-19.6.1.1 Changes to Simplify Multi-homed Web Servers and Conserve IP
-         Addresses
-
-   </p>
-
+<h5 id="19.6.1.1">19.6.1.1 Changes to Simplify Multi-homed Web Servers and Conserve IP Addresses</h5>
    <p>
    The requirements that clients and servers support the Host request-
    header, report an error if the Host request-header (section 14.23) is
    missing from an HTTP/1.1 request, and accept absolute URIs (section
    5.1.2) are among the most important changes defined by this
    specification.
-
    </p>
 
    <p>
@@ -9518,33 +9118,31 @@ the orginal document -->
    allocated for the sole purpose of allowing special-purpose domain
    names to be used in root-level HTTP URLs. Given the rate of growth of
    the Web, and the number of servers already deployed, it is extremely
-
-
-
-
-
-
-
    important that all implementations of HTTP (including updates to
    existing HTTP/1.0 applications) correctly implement these
    requirements:
-
    </p>
 
-   <p>
-      - Both clients and servers MUST support the Host request-header.
+      <ul>
+        <li>
+        Both clients and servers MUST support the Host request-header.
+        </li>
 
-      - A client that sends an HTTP/1.1 request MUST send a Host header.
+        <li>
+        A client that sends an HTTP/1.1 request MUST send a Host header.
+        </li>
 
-      - Servers MUST report a 400 (Bad Request) error if an HTTP/1.1
+        <li>
+        Servers MUST report a 400 (Bad Request) error if an HTTP/1.1
         request does not include a Host request-header.
+        </li>
 
-      - Servers MUST accept absolute URIs.
+        <li>
+        Servers MUST accept absolute URIs.
+        </li>
+      </ul>
 
-19.6.2 Compatibility with HTTP/1.0 Persistent Connections
-
-   </p>
-
+<h4 id="19.6.2">19.6.2 Compatibility with HTTP/1.0 Persistent Connections</h4>
    <p>
    Some clients and servers might wish to be compatible with some
    previous implementations of persistent connections in HTTP/1.0
@@ -9559,7 +9157,6 @@ the orginal document -->
    result in a hung HTTP/1.0 proxy waiting for the close on the
    response. The result is that HTTP/1.0 clients must be prevented from
    using Keep-Alive when talking to proxies.
-
    </p>
 
    <p>
@@ -9570,41 +9167,27 @@ the orginal document -->
    that ignores Connection. Persistent connections are the default for
    HTTP/1.1 messages; we introduce a new keyword (Connection: close) for
    declaring non-persistence. See section 14.10.
-
    </p>
 
    <p>
    The original HTTP/1.0 form of persistent connections (the Connection:
    Keep-Alive and Keep-Alive header) is documented in RFC 2068. [33]
-
    </p>
 
-   <p>
-19.6.3 Changes from RFC 2068
-
-   </p>
-
+<h4 id="19.6.3">19.6.3 Changes from RFC 2068</h4>
    <p>
    This specification has been carefully audited to correct and
    disambiguate key word usage; RFC 2068 had many problems in respect to
    the conventions laid out in RFC 2119 [34].
 
-   </p>
-
    <p>
    Clarified which error code should be used for inbound server failures
    (e.g. DNS failures). (Section 10.5.5).
-
-
-
-
-
    </p>
 
    <p>
    CREATE had a race that required an Etag be sent when a resource is
    first created. (Section 10.2.2).
-
    </p>
 
    <p>
@@ -9612,7 +9195,6 @@ the orginal document -->
    implemented widely, and there is no simple, safe way to introduce it
    without a robust extension mechanism. In addition, it is used in a
    similar, but not identical fashion in MHTML [45].
-
    </p>
 
    <p>
@@ -9621,19 +9203,16 @@ the orginal document -->
    transfer encoding that may not be self delimiting); it was important
    to straighten out exactly how message lengths are computed. (Sections
    3.6, 4.4, 7.2.2, 13.5.2, 14.13, 14.16)
-
    </p>
 
    <p>
    A content-coding of "identity" was introduced, to solve problems
    discovered in caching. (section 3.5)
-
    </p>
 
    <p>
    Quality Values of zero should indicate that "I don't want something"
    to allow clients to refuse a representation. (Section 3.9)
-
    </p>
 
    <p>
@@ -9641,26 +9220,22 @@ the orginal document -->
    by RFC 2145. Require proxies to upgrade requests to highest protocol
    version they support to deal with problems discovered in HTTP/1.0
    implementations (Section 3.1)
-
    </p>
 
    <p>
    Charset wildcarding is introduced to avoid explosion of character set
    names in accept headers. (Section 14.2)
-
    </p>
 
    <p>
    A case was missed in the Cache-Control model of HTTP/1.1; s-maxage
    was introduced to add this missing case. (Sections 13.4, 14.8, 14.9,
    14.9.3)
-
    </p>
 
    <p>
    The Cache-Control: max-age directive was not properly defined for
    responses. (Section 14.9.3)
-
    </p>
 
    <p>
@@ -9669,7 +9244,6 @@ the orginal document -->
    byterange request. We therefore need a mechanism to allow byteranges
    with a content-range not indicating the full length of the message.
    (Section 14.16)
-
    </p>
 
    <p>
@@ -9677,23 +9251,14 @@ the orginal document -->
    were always returned; by allowing the server to only send needed
    headers in a 206 response, this problem can be avoided. (Section
    10.2.7, 13.5.3, and 14.27)
-
    </p>
 
    <p>
-
-
-
-
-
-
-
    Fix problem with unsatisfiable range requests; there are two cases:
    syntactic problems, and range doesn't exist in the document. The 416
    status code was needed to resolve this ambiguity needed to indicate
    an error for a byte range request that falls outside of the actual
    contents of a document. (Section 10.4.17, 14.16)
-
    </p>
 
    <p>
@@ -9701,52 +9266,61 @@ the orginal document -->
    for implementors to get it wrong, as the consequences of errors here
    can have significant impact on the Internet, and to deal with the
    following problems:
-
    </p>
 
-   <p>
-      1. Changing "HTTP/1.1 or later" to "HTTP/1.1", in contexts where
+      <ol>
+         <li>
+         Changing "HTTP/1.1 or later" to "HTTP/1.1", in contexts where
          this was incorrectly placing a requirement on the behavior of
          an implementation of a future version of HTTP/1.x
+         </li>
 
-      2. Made it clear that user-agents should retry requests, not
+         <li>
+         Made it clear that user-agents should retry requests, not
          "clients" in general.
+         </li>
 
-      3. Converted requirements for clients to ignore unexpected 100
+         <li>
+         Converted requirements for clients to ignore unexpected 100
          (Continue) responses, and for proxies to forward 100 responses,
          into a general requirement for 1xx responses.
+         </li>
 
-      4. Modified some TCP-specific language, to make it clearer that
+         <li>
+         Modified some TCP-specific language, to make it clearer that
          non-TCP transports are possible for HTTP.
+         </li>
 
-      5. Require that the origin server MUST NOT wait for the request
+         <li>
+         Require that the origin server MUST NOT wait for the request
          body before it sends a required 100 (Continue) response.
+         </li>
 
-      6. Allow, rather than require, a server to omit 100 (Continue) if
+         <li>
+         Allow, rather than require, a server to omit 100 (Continue) if
          it has already seen some of the request body.
+         </li>
 
-      7. Allow servers to defend against denial-of-service attacks and
+         <li>
+         Allow servers to defend against denial-of-service attacks and
          broken clients.
-
+      </ol>
    </p>
 
    <p>
    This change adds the Expect header and 417 status code. The message
    transmission requirements fixes are in sections 8.2, 10.4.18,
    8.1.2.2, 13.11, and 14.20.
-
    </p>
 
    <p>
    Proxies should be able to add Content-Length when appropriate.
    (Section 13.5.2)
-
    </p>
 
    <p>
    Clean up confusion between 403 and 404 responses. (Section 10.4.4,
    10.4.5, and 10.4.11)
-
    </p>
 
    <p>
@@ -9754,14 +9328,9 @@ the orginal document -->
    (Section 13.1.2, 13.2.4, 13.5.2, 13.5.3, 14.9.3, and 14.46) Warning
    also needed to be a general header, as PUT or other methods may have
    need for it in requests.
-
    </p>
 
    <p>
-
-
-
-
    Transfer-coding had significant problems, particularly with
    interactions with chunked encoding. The solution is that transfer-
    codings become as full fledged as content-codings. This involves
@@ -9772,29 +9341,26 @@ the orginal document -->
    interoperability problem that could have occurred due to interactions
    between authentication trailers, chunked encoding and HTTP/1.0
    clients.(Section 3.6, 3.6.1, and 14.39)
-
    </p>
 
    <p>
    The PATCH, LINK, UNLINK methods were defined but not commonly
    implemented in previous versions of this specification. See RFC 2068
    [33].
-
    </p>
 
    <p>
    The Alternates, Content-Version, Derived-From, Link, URI, Public and
    Content-Base header fields were defined in previous versions of this
    specification, but not commonly implemented. See RFC 2068 [33].
-
    </p>
-
-   <p>
 </div>
+
 <div id="section-20" class="section hide">
 <h2 id="20">20 Index</h2>
    <p>Please see the PostScript version of this RFC for the INDEX.</p>
 </div>
+
 <div id="section-21" class="section hide">
 <h2 id="21">21.  Full Copyright Statement</h2>
    <p>Copyright (C) The Internet Society (1999).  All Rights Reserved.</p>
