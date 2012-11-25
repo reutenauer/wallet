@@ -5236,6 +5236,7 @@ the orginal document -->
        response may be cached, and cannot ensure the privacy of the
        message content.
        </p>
+       </dd>
 
    <dt>no-cache</dt>
        <dd>
@@ -5256,12 +5257,13 @@ the orginal document -->
       server. This allows an origin server to prevent the re-use of
       certain header fields in a response, while still allowing caching
       of the rest of the response.
-      </dd>
+      </p>
 
        <p class="note">
        Note: Most HTTP/1.0 caches will not recognize or obey this
        directive.
        </p>
+      </dd>
    </dl>
 
 <h4 id="14.9.2">14.9.2 What May be Stored by Caches</h4>
@@ -5399,8 +5401,8 @@ the orginal document -->
       seconds.
       </dd>
 
-      <dd>
    <dt>max-stale</dt>
+      <dd>
       Indicates that the client is willing to accept a response that has
       exceeded its expiration time. If max-stale is assigned a value,
       then the client is willing to accept a response that has exceeded
@@ -5466,8 +5468,8 @@ the orginal document -->
       such a request.
       </dd>
 
-      <dd>
    <dt>Specific end-to-end revalidation</dt>
+      <dd>
       The request includes a "max-age=0" cache-control directive, which
       forces each cache along the path to the origin server to
       revalidate its own entry, if any, with the next cache or server.
@@ -5484,6 +5486,7 @@ the orginal document -->
       conditional; the first cache along the path (if any) that holds a
       cache entry for this resource includes a cache-validating
       conditional with its current validator.
+      </dd>
 
    <dt>max-age</dt>
       <dd>
@@ -5570,6 +5573,7 @@ the orginal document -->
       so, MUST explicitly warn the user that an unvalidated response has
       been provided. The warning MUST be provided on each unvalidated
       access, and SHOULD require explicit user confirmation.
+      </p>
       </dd>
 
    <dt>proxy-revalidate</dt>
@@ -7886,7 +7890,7 @@ the orginal document -->
      to a human user, or logged. A system receiving this warning MUST
      NOT take any automated action.
      </dd>
-   <dl>
+   </dl>
 
    <p>
    If an implementation sends a message with one or more Warning headers
