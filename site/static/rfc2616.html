@@ -5267,7 +5267,10 @@ the orginal document -->
 <h4 id="14.9.2">14.9.2 What May be Stored by Caches</h4>
 
    <!-- TODO also -->
-   no-store
+   <dl>
+   <dt>no-store</dt>
+      <dd>
+      <p>
       The purpose of the no-store directive is to prevent the
       inadvertent release or retention of sensitive information (for
       example, on backup tapes). The no-store directive applies to the
@@ -5281,12 +5284,16 @@ the orginal document -->
       non-volatile storage, and MUST make a best-effort attempt to
       remove the information from volatile storage as promptly as
       possible after forwarding it.
+      </p>
 
+      <p>
       Even when this directive is associated with a response, users
       might explicitly store such a response outside of the caching
       system (e.g., with a "Save As" dialog). History buffers MAY store
       such responses as part of their normal operation.
+      </p>
 
+      <p>
       The purpose of this directive is to meet the stated requirements
       of certain users and service authors who are concerned about
       accidental releases of information via unanticipated accesses to
@@ -5296,6 +5303,9 @@ the orginal document -->
       particular, malicious or compromised caches might not recognize or
       obey this directive, and communications networks might be
       vulnerable to eavesdropping.
+      </p>
+      </dd>
+   </dl>
 
 <h4 id="14.9.3">14.9.3 Modifications of the Basic Expiration Mechanism</h4>
    <p>
@@ -5340,7 +5350,9 @@ the orginal document -->
       </p>
 
    <!-- TODO TODO -->
-   s-maxage
+   <dl>
+   <dt>s-maxage</dt>
+       <dd>
        If a response includes an s-maxage directive, then for a shared
        cache (but not for a private cache), the maximum age specified by
        this directive overrides the maximum age specified by either the
@@ -5350,6 +5362,8 @@ the orginal document -->
        entry after it becomes stale to respond to a subsequent request
        without first revalidating it with the origin server. The s-
        maxage directive is always ignored by a private cache.
+       </dd>
+   </dl>
 
    <p>
    Note that most older caches, not compliant with this specification,
@@ -5367,28 +5381,34 @@ the orginal document -->
    </p>
 
    <!-- TODO still -->
-   <p>
-   max-age
+   <dl>
+   <dt>max-age</dt>
+      <dd>
       Indicates that the client is willing to accept a response whose
       age is no greater than the specified time in seconds. Unless max-
       stale directive is also included, the client is not willing to
       accept a stale response.
+      </dd>
 
-   min-fresh
+   <dt>min-fresh</dt>
+      <dd>
       Indicates that the client is willing to accept a response whose
       freshness lifetime is no less than its current age plus the
       specified time in seconds. That is, the client wants a response
       that will still be fresh for at least the specified number of
       seconds.
+      </dd>
 
-   max-stale
+      <dd>
+   <dt>max-stale</dt>
       Indicates that the client is willing to accept a response that has
       exceeded its expiration time. If max-stale is assigned a value,
       then the client is willing to accept a response that has exceeded
       its expiration time by no more than the specified number of
       seconds. If no value is assigned to max-stale, then the client is
       willing to accept a stale response of any age.
-   </p>
+      </dd>
+   </dl>
 
    <p>
    If a cache returns a stale response, either because of a max-stale
@@ -5436,22 +5456,27 @@ the orginal document -->
    </p>
 
    <!-- TODO No idea how to format that -->
-   <p>
-   End-to-end reload
+   <dl>
+   <dt>End-to-end reload</dt>
+      <dd>
       The request includes a "no-cache" cache-control directive or, for
       compatibility with HTTP/1.0 clients, "Pragma: no-cache". Field
       names MUST NOT be included with the no-cache directive in a
       request. The server MUST NOT use a cached copy when responding to
       such a request.
+      </dd>
 
-   Specific end-to-end revalidation
+      <dd>
+   <dt>Specific end-to-end revalidation</dt>
       The request includes a "max-age=0" cache-control directive, which
       forces each cache along the path to the origin server to
       revalidate its own entry, if any, with the next cache or server.
       The initial request includes a cache-validating conditional with
       the client's current validator.
+      </dd>
 
-   Unspecified end-to-end revalidation
+   <dt>Unspecified end-to-end revalidation</dt>
+      <dd>
       The request includes "max-age=0" cache-control directive, which
       forces each cache along the path to the origin server to
       revalidate its own entry, if any, with the next cache or server.
@@ -5460,14 +5485,18 @@ the orginal document -->
       cache entry for this resource includes a cache-validating
       conditional with its current validator.
 
-   max-age
+   <dt>max-age</dt>
+      <dd>
+      <p>
       When an intermediate cache is forced, by means of a max-age=0
       directive, to revalidate its own cache entry, and the client has
       supplied its own validator in the request, the supplied validator
       might differ from the validator currently stored with the cache
       entry. In this case, the cache MAY use either validator in making
       its own request without affecting semantic transparency.
+      </p>
 
+      <p>
       However, the choice of validator might affect performance. The
       best approach is for the intermediate cache to use its own
       validator when making its request. If the server replies with 304
@@ -5479,11 +5508,16 @@ the orginal document -->
       client's validator is equal to the origin server's, then the
       intermediate cache simply returns 304 (Not Modified). Otherwise,
       it returns the new entity with a 200 (OK) response.
+      </p>
 
+      <p>
       If a request includes the no-cache directive, it SHOULD NOT
       include min-fresh, max-stale, or max-age.
+      </p>
+      </dd>
 
-   only-if-cached
+   <dt>only-if-cached</dt>
+      <dd>
       In some cases, such as times of extremely poor network
       connectivity, a client may want a cache to return only those
       responses that it currently has stored, and not to reload or
@@ -5495,8 +5529,11 @@ the orginal document -->
       of caches is being operated as a unified system with good internal
       connectivity, such a request MAY be forwarded within that group of
       caches.
+      </dd>
 
-   must-revalidate
+   <dt>must-revalidate</dt>
+      <dd>
+      <p>
       Because a cache MAY be configured to ignore a server's specified
       expiration time, and because a client request MAY include a max-
       stale directive (which has a similar effect), the protocol also
@@ -5508,27 +5545,35 @@ the orginal document -->
       server. (I.e., the cache MUST do an end-to-end revalidation every
       time, if, based solely on the origin server's Expires or max-age
       value, the cached response is stale.)
+      </p>
 
+      <p>
       The must-revalidate directive is necessary to support reliable
       operation for certain protocol features. In all circumstances an
       HTTP/1.1 cache MUST obey the must-revalidate directive; in
       particular, if the cache cannot reach the origin server for any
       reason, it MUST generate a 504 (Gateway Timeout) response.
+      </p>
 
+      <p>
       Servers SHOULD send the must-revalidate directive if and only if
       failure to revalidate a request on the entity could result in
       incorrect operation, such as a silently unexecuted financial
       transaction. Recipients MUST NOT take any automated action that
       violates this directive, and MUST NOT automatically provide an
       unvalidated copy of the entity if revalidation fails.
+      </p>
 
+      <p>
       Although this is not recommended, user agents operating under
       severe connectivity constraints MAY violate this directive but, if
       so, MUST explicitly warn the user that an unvalidated response has
       been provided. The warning MUST be provided on each unvalidated
       access, and SHOULD require explicit user confirmation.
+      </dd>
 
-   proxy-revalidate
+   <dt>proxy-revalidate</dt>
+      <dd>
       The proxy-revalidate directive has the same meaning as the must-
       revalidate directive, except that it does not apply to non-shared
       user agent caches. It can be used on a response to an
@@ -5539,30 +5584,41 @@ the orginal document -->
       (in order to make sure that each user has been authenticated).
       Note that such authenticated responses also need the public cache
       control directive in order to allow them to be cached at all.
+      </dd>
+   </dl>
 
 <h4 id="14.9.5">14.9.5 No-Transform Directive</h4>
 
    <!-- TODO yet again -->
-   no-transform
+   <dt>no-transform</dt>
+      <dd>
+      <p>
       Implementors of intermediate caches (proxies) have found it useful
       to convert the media type of certain entity bodies. A non-
       transparent proxy might, for example, convert between image
       formats in order to save cache space or to reduce the amount of
       traffic on a slow link.
+      </p>
 
+      <p>
       Serious operational problems occur, however, when these
       transformations are applied to entity bodies intended for certain
       kinds of applications. For example, applications for medical
       imaging, scientific data analysis and those using end-to-end
       authentication, all depend on receiving an entity body that is bit
       for bit identical to the original entity-body.
+      </p>
 
+      <p>
       Therefore, if a message includes the no-transform directive, an
       intermediate cache or proxy MUST NOT change those headers that are
       listed in section 13.5.2 as being subject to the no-transform
       directive. This implies that the cache or proxy MUST NOT change
       any aspect of the entity-body that is specified by these headers,
       including the value of the entity-body itself.
+      </dd>
+      </p>
+   </dl>
 
 <h4 id="14.9.6">14.9.6 Cache Control Extensions</h4>
    <p>
@@ -7781,42 +7837,56 @@ the orginal document -->
    </p>
 
    <!-- TODO -->
-   <p>
-   110 Response is stale
+   <dl>
+   <dt>110 Response is stale</dt>
+     <dd>
      MUST be included whenever the returned response is stale.
+     </dd>
 
-   111 Revalidation failed
+   <dt>111 Revalidation failed</dt>
+     <dd>
      MUST be included if a cache returns a stale response because an
      attempt to revalidate the response failed, due to an inability to
      reach the server.
+     </dd>
 
-   112 Disconnected operation
+   <dt>112 Disconnected operation</dt>
+     <dd>
      SHOULD be included if the cache is intentionally disconnected from
      the rest of the network for a period of time.
+     </dd>
 
-   113 Heuristic expiration
+   <dt>113 Heuristic expiration</dt>
+     <dd>
      MUST be included if the cache heuristically chose a freshness
      lifetime greater than 24 hours and the response's age is greater
      than 24 hours.
+     </dd>
 
-   199 Miscellaneous warning
+   <dt>199 Miscellaneous warning</dt>
+     <dd>
      The warning text MAY include arbitrary information to be presented
      to a human user, or logged. A system receiving this warning MUST
      NOT take any automated action, besides presenting the warning to
      the user.
+     </dd>
 
-   214 Transformation applied
+   <dt>214 Transformation applied</dt>
+     <dd>
      MUST be added by an intermediate cache or proxy if it applies any
      transformation changing the content-coding (as specified in the
      Content-Encoding header) or media-type (as specified in the
      Content-Type header) of the response, or the entity-body of the
      response, unless this Warning code already appears in the response.
+     </dd>
 
-   299 Miscellaneous persistent warning
+   <dt>299 Miscellaneous persistent warning</dt>
+     <dd>
      The warning text MAY include arbitrary information to be presented
      to a human user, or logged. A system receiving this warning MUST
      NOT take any automated action.
-   </p>
+     </dd>
+   <dl>
 
    <p>
    If an implementation sends a message with one or more Warning headers
