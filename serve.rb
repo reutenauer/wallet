@@ -8,7 +8,7 @@ def dump(filename)
   filecontents
 end
 
-class Stream
+class MyStream
   def initialize(filename)
     file = File.open(filename)
     @filecontents = file.read(file.size)
@@ -39,7 +39,7 @@ routes.each do |key, route|
   content_type = route[:type]
 
   get(path) do
-    [200, { "Content-Type" => content_type }, Stream.new(File.join('static', file))]
+    [200, { "Content-Type" => content_type }, MyStream.new(File.join('static', file))]
   end
 end
 
