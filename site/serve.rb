@@ -8,10 +8,22 @@ def dump(filename)
   filecontents
 end
 
+class Stream
+  def initialize(filename)
+    file = File.open(filename)
+    @filecontents = file.read(file.size)
+    file.close
+  end
+
+  def each
+    yield(@filecontents)
+  end
+end
+
 routes = {
-  :html => { :path => '/rfc2616.html', :file => 'rfc2616.html' },
-  :css => { :path => '/style.css', :file => 'style.css' },
-  :javascript => { :path => '/script.js', :file => 'script.js' },
+  :html => { :path => '/rfc2616.html', :file => 'rfc2616.html', :type => "text/html; charset=UTF-8" },
+  :css => { :path => '/style.css', :file => 'style.css', :type => "text/css" },
+  :javascript => { :path => '/script.js', :file => 'script.js', :type => "text/javascript" },
 
   :root => :html
 }
@@ -24,9 +36,10 @@ routes.each do |key, route|
 
   path = route[:path]
   file = route[:file]
+  content_type = route[:type]
 
   get(path) do
-    dump(File.join('static', file))
+    [200, { "Content-Type" => content_type }, Stream.new(File.join('static', file))]
   end
 end
 
