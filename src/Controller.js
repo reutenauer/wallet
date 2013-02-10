@@ -9,11 +9,19 @@ Controller.input = function() {
   // console.log(wallet.set);
 
   var res = "Pick from your wallet: ";
-  for(var pence in wallet.set) {
+  var max = wallet.set.length;
+  var min = -1;
+  for(var m in wallet.set) {
+    min = m;
+    break;
+  }
+
+  for(var pence in wallet.set.reverse()) {
     var num = wallet.set[pence];
     // console.log(pence, num);
     if(num > 0)
-      res += num + " " + pence + "-pence coin(s), ";
+      res += Wallet.format(max - 1 - pence) + ": " + num;
+      if(max - 1 - pence != min) res += ", ";
   }
 
   // res = "<p>" + res + "</p>";
