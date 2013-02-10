@@ -16,8 +16,10 @@ Controller.input = function() {
   for(var pence in wallet.set.reverse()) {
     var num = wallet.set[pence];
     if(num > 0)
-      res += Wallet.format(max - 1 - pence) + ": " + num;
-      if(max - 1 - pence != min) res += ", ";
+      res += Wallet.format(max - 1 - pence) + ": " + num + " coin";
+      if(num > 1) res += "s";
+      if(max - 1 - pence == min) res += "."
+      else res += ", ";
   }
 
   $("#result").html(res);
