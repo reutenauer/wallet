@@ -45,3 +45,8 @@ Wallet.normalise = function(input) {
     return 0;
   }
 }
+
+Wallet.format = function(pence) {
+  if(pence >= 100) return "£" + Math.floor(pence / 100);
+  else return Math.floor(pence) + "p";
+}

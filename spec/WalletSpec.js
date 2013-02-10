@@ -46,4 +46,10 @@ describe("Wallet", function() {
       }
     });
   });
+
+  describe("format()", function() {
+    it("formats “100” sa £1", function() {
+      expect(Wallet.format(100)).toEqual("£1");
+    });
+  });
 });
