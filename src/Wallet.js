@@ -86,6 +86,9 @@ Wallet.normalise = function(input) {
   }
 }
 
+/* Format the name of the coin.  The input is a number of pence, and the
+ * output is is "xxp" or "£y".
+ */
 Wallet.format = function(pence) {
   if(pence >= 100) return "£" + Math.floor(pence / 100);
   else return Math.floor(pence) + "p";
