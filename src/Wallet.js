@@ -11,9 +11,8 @@ Wallet.prototype.pick = function(amountAsString) {
   var amount = Wallet.normalise(amountAsString);
   if(amount == NaN) return undefined;
 
-  /* The array containing the set of coins that make the desired sum.
-   * We initialise here so as to have a clean one after here run of
-   * pick().
+  /* The array containing the set of coins that make up the desired sum.  We
+   * initialise here so as to have a clean one after here run of pick().
    */
   this.set = new Array();
 
@@ -36,14 +35,15 @@ Wallet.prototype.pick = function(amountAsString) {
   }
 }
 
-Wallet.penceFromPounds = function(pence) {
+// TODO: Refactor that to make calls in normalise() more rational.
+Wallet.penceFromString = function(poundString) {
   /* Usual round function: fractional parts in the range [0, 1/2[ are
    * rounded down, the ones in the range [1/2, 1[ are rounded up.  In
    * orders words, we round down if and only if the first digit is
    * between 0 and 4; and in particular, 0.5 is rounded up to 1.
    */
-  if(pence == "") return undefined;
-  else return Math.floor(pence * 100 + 0.5);
+  if(poundString == "") return undefined;
+  else return Math.floor(poundString * 100 + 0.5);
 }
 
 Wallet.normalise = function(input) {
@@ -53,7 +53,7 @@ Wallet.normalise = function(input) {
    * The conventions for analysing the input string can be construed as
    * follows:
    * A valid input consists of either:
-   *   a. A pound sign (£), a number represented in base 10, with or
+   *   a. A pound sign (£), a number represented in base 10 with or
    *   without a decimal dot, and an optional penny sign (p).  In this
    *   case, it represents an amount in pounds.
    *   b. A number in base 10 containing a mandatory decimal dot,
@@ -75,11 +75,11 @@ Wallet.normalise = function(input) {
   if(match = /^£(\d*\.?\d*)p?$/.exec(input)) {
     var pounds = match[1];
     if(pounds === ".") return undefined;
-    else return Wallet.penceFromPounds(pounds);
+    else return Wallet.penceFromString(pounds);
   } else if(match = /^(\d*\.\d*)p?$/.exec(input)) {
     var pounds = match[1];
     if(pounds === ".") return undefined;
-    else return Wallet.penceFromPounds(pounds);
+    else return Wallet.penceFromString(pounds);
   }
   else if(match = /^(\d+)p?$/.exec(input)) {
     return Math.floor(match[1]);
@@ -89,7 +89,7 @@ Wallet.normalise = function(input) {
 }
 
 /* Format the name of the coin.  The input is a number of pence, and the
- * output is is "xxp" or "£y".
+ * output is of the form "xxp" or "£y".
  */
 Wallet.format = function(pence) {
   if(pence >= 100) return "£" + Math.floor(pence / 100);
