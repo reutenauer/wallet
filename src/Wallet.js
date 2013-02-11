@@ -9,6 +9,7 @@ function Wallet() {
 
 Wallet.prototype.pick = function(amountAsString) {
   var amount = Wallet.normalise(amountAsString);
+  if(amount == NaN) return undefined;
 
   /* The array containing the set of coins that make the desired sum.
    * We initialise here so as to have a clean one after here run of
@@ -82,7 +83,7 @@ Wallet.normalise = function(input) {
   else if(match = /^(\d+)p?$/.exec(input)) {
     return Math.floor(match[1]);
   } else {
-    return 0;
+    return NaN;
   }
 }
 

@@ -5,6 +5,12 @@ Controller.handleInput = function() {
   var wallet = new Wallet();
   wallet.pick($("#input").val());
 
+  if(!wallet.set || wallet.set.length == 0)
+  {
+    $("#result").html("Input invalid.");
+    return;
+  }
+
   /* wallet.set is an array, and we need both its minimum and its
    * maximum index.
    */
@@ -15,7 +21,6 @@ Controller.handleInput = function() {
     break;
   }
 
-  // TODO Catch invalid inputs.
   var res = "Pick from your wallet: ";
   /* The purpose of this admittedly odd loop is to display the higher
    * denomination first: the array for 9p = 1 * 5p + 2 * 2p would be
