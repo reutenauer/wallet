@@ -53,32 +53,29 @@ Wallet.normalise = function(input) {
   /* Parsing the input
    * The conventions for analysing the input string can be construed as
    * follows:
-   * 1. A valid input contains an optional pound sign (£), a decimal number
-   * with or without a decimal dot, and an optional pence sign (p).
+   * A valid input consists of either:
+   *   a. A pound sign (£), a number represented in base 10, with or
+   *   without a decimal dot, and an optional penny sign (p).  In this
+   *   case, it represents an amount in pounds.
+   *   b. A number in base 10 containing a mandatory decimal dot.  It’s
+   *   also an amount in pounds in that case.
+   *   c. A number in base 10 with no decimal dot, followed by an
+   *   optional penny sign.
    * All other input is invalid.
-   * 2. The input is interpreted in three different ways:
-   *   a. If it starts with a pound sign, it’s an amount in pounds.
-   *   b. If it contains a dot, it’s also expressed in pounds.
-   *   c. If it contains neither a pound nor a dot, it’s an amount in pence.
    *
-   * The three regular expressions below capture these rules (plus the
-   * meaningless string consisting of a single dot, ".", see below).
+   * The three regular expressions below capture these rules.
    *
-   * It should be noted that the code is relatively liberal, and accepts
-   * inputs which are not explicited allowed by the rules, such as
-   * "2.7", where the fractional part contains a single digit, but there
-   * doesn’t seem to be any reason to reject such an input, and its
-   * interpretation is straightforward.
-   * Inputs such as "3." are also accepted, and interpreted as
-   * "three pounds", although "3" is interpreted as "three pence" which
-   * may lead to confusion, but this behaviour seems sensible.
+   * It should be noted that the code abstracts slightly from the
+   * conventions laid out, and has a small potential for confusion.  For
+   * instance, a string such as "3.", although visually very close to
+   * "3", means something different ("three pounds" for the former,
+   * "three pence" for the latter).  This behaviour may need to be
+   * clarified for a smoother user interface.
    */
   if(match = /^£(\d*\.?\d*)p?$/.exec(input)) {
     return Wallet.penceFromPounds(match[1]);
-  } else if(match = /^(\d*\.\d*)p?$/.exec(input)) {
-    // This expression matches ".", which is invalid.
-    if(input === '.') { return 0; }
-    else return Wallet.penceFromPounds(match[1]);
+  } else if(match = /^(\d*\.\d*)$/.exec(input)) {
+    return Wallet.penceFromPounds(match[1]);
   }
   else if(match = /^(\d+)p?$/.exec(input)) {
     return Math.floor(match[1]);

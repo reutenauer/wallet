@@ -35,7 +35,7 @@ describe("Wallet", function() {
       { "input" : "4.235p", "output" : 424 },
       { "input" : "£1.257422457p", "output" : 126 }]
 
-    // TODO invalid inputs
+    // TODO invalid inputs, including "£.p", ".", "3.27p"
 
     it("returns an integral number of pence", function() {
       var l = tests.length;
