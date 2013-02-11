@@ -36,8 +36,6 @@ Wallet.prototype.pick = function(amountAsString) {
   }
 }
 
-// TODO Display (100 as £1, etc.).  Should ignore undefined’s AND zeros.
-
 Wallet.penceFromPounds = function(pence) {
   /* Usual round function: fractional parts in the range [0, 1/2[ are
    * rounded down, the ones in the range [1/2, 1[ are rounded up.  In
