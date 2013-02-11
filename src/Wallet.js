@@ -1,13 +1,14 @@
 function Wallet() {
-  /* The text of the assignment seems to omit 10p and 5p coins, which is
-   * reproduced in the array below.  It is straightforward to change it
-   * if desired.
+  /* Face value of the coins we consider, in pence and in decreasing
+   * order.  The text of the assignment seems to omit 10p and 5p coins,
+   * which is reproduced in the array below.  It is straightforward to
+   * change it if desired.
    */
-  this.coins = [200, 100, 20, 2, 1];
+  this.denominations = [200, 100, 20, 2, 1];
 }
 
-Wallet.prototype.pick = function(input) {
-  var sum = Wallet.normalise(input);
+Wallet.prototype.pick = function(amountAsString) {
+  var amount = Wallet.normalise(amountAsString);
 
   /* The array containing the set of coins that make the desired sum.
    * We initialise here so as to have a clean one after here run of
@@ -22,14 +23,14 @@ Wallet.prototype.pick = function(input) {
    * This may not yield the smallest set each time, by I haven’t been
    * able to find a counterexample – AR, 2013-01-10.
    */
-  var l = this.coins.length;
+  var l = this.denominations.length;
   for(var i = 0; i < l; i++) {
-    var coin = this.coins[i];
-    var quotient = Math.floor(sum / coin);
+    var coin = this.denominations[i];
+    var quotient = Math.floor(amount / coin);
     if(quotient > 0)
     {
       this.set[coin] = quotient;
-      sum -= quotient * coin;
+      amount -= quotient * coin;
     }
   }
 }
@@ -37,15 +38,16 @@ Wallet.prototype.pick = function(input) {
 // TODO Display (100 as £1, etc.).  Should ignore undefined’s AND zeros.
 
 Wallet.penceFromPounds = function(pence) {
-  // Usual round function
+  /* Usual round function: fractional parts in the range [0, 1/2[ are
+   * rounded down, the ones in the range [1/2, 1[ are rounded up.  In
+   * orders words, we round down if and only if the first digit is
+   * between 0 and 4; and in particular, 0.5 is rounded up to 1.
+   */
   return Math.floor(pence * 100 + 0.5);
 }
 
 Wallet.normalise = function(input) {
   // TODO trim from whitespace
-  // We run two tests: first we test whether the first character is a
-  // pound sign, then if the string contains a dot.
-  // Hence 2.7 is actually more than 27 (£2.7 > 27p) !!! TODO check!
 
   /* Parsing the input
    * The conventions for analysing the input string can be construed as
@@ -61,11 +63,14 @@ Wallet.normalise = function(input) {
    * The three regular expressions below capture these rules (plus the
    * meaningless string consisting of a single dot, ".", see below).
    *
-   * It should be noted that the code accepts inputs which are not
-   * explicited allowed by the rules, such as "2.7", where the
-   * fractional part contains a single digit, but there doesn’t seem to
-   * be any reason to reject such an input, and its interpretation is
-   * straightforward.
+   * It should be noted that the code is relatively liberal, and accepts
+   * inputs which are not explicited allowed by the rules, such as
+   * "2.7", where the fractional part contains a single digit, but there
+   * doesn’t seem to be any reason to reject such an input, and its
+   * interpretation is straightforward.
+   * Inputs such as "3." are also accepted, and interpreted as
+   * "three pounds", although "3" is interpreted as "three pence" which
+   * may lead to confusion, but this behaviour seems sensible.
    */
   if(match = /^£(\d*\.?\d*)p?$/.exec(input)) {
     return Wallet.penceFromPounds(match[1]);

@@ -16,13 +16,9 @@
 <p id="result">
 </p>
 <script type="text/javascript">
-  $("#button").on("click", function() {
-    Controller.input();
-  });
+  $("#button").on("click", Controller.handleInput);
 
-  $("#input").on("change", function() {
-    Controller.input();
-  });
+  $("#input").on("change", Controller.handleInput);
 </script>
 </body>
 </html>
