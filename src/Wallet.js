@@ -55,8 +55,9 @@ Wallet.normalise = function(input) {
    *   a. A pound sign (£), a number represented in base 10, with or
    *   without a decimal dot, and an optional penny sign (p).  In this
    *   case, it represents an amount in pounds.
-   *   b. A number in base 10 containing a mandatory decimal dot.  It’s
-   *   also an amount in pounds in that case.
+   *   b. A number in base 10 containing a mandatory decimal dot,
+   *   optionally followed by a penny sign.  It’s also an amount in
+   *   pounds in that case.
    *   c. A number in base 10 with no decimal dot, followed by an
    *   optional penny sign.
    * All other input is invalid.
@@ -72,7 +73,7 @@ Wallet.normalise = function(input) {
    */
   if(match = /^£(\d*\.?\d*)p?$/.exec(input)) {
     return Wallet.penceFromPounds(match[1]);
-  } else if(match = /^(\d*\.\d*)$/.exec(input)) {
+  } else if(match = /^(\d*\.\d*)p?$/.exec(input)) {
     return Wallet.penceFromPounds(match[1]);
   }
   else if(match = /^(\d+)p?$/.exec(input)) {
