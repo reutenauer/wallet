@@ -1,7 +1,7 @@
 Wallet
 ======
 
-Picking coins from your wallet.
+Picking coins from your wallet to make up a certain amount.
 
 Copyright (c) Arthur Reutenauer, 2013.
 Except where mentioned, the code in this repository is placed under the
