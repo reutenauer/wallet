@@ -21,13 +21,17 @@ Controller.handleInput = function() {
     break;
   }
 
+  /* The string to be displayed to the user. */
+
   var res = "Pick from your wallet: ";
   /* The purpose of this admittedly odd loop is to display the higher
-   * denomination first: the array for 9p = 1 * 5p + 2 * 2p would be
-   * [0, 0, 2, 0, 0, 1], hence we need to reverse the array, and to
-   * flip the index to get the denomination in that new array (the 5p
-   * coin now gets index 0, and 2p index 3, hence by computing 5 -
-   * antiIndex, we get the denomination).
+   * denomination first.  In order to do that we reverse the array; but now we
+   * also need to find the index of each value in the original array.
+   * For example, the array for 9p = 2 * 2p + 1 * 5p would be [0, 0, 2, 0, 0, 1],
+   * and in the reversed array ([1, 0, 0, etc.]), the 5p coin now gets index 0,
+   * the 2p coin index 3.  We call the index in the reversed array antiIndex,
+   * and by computing maxIndex - antiIndex, we get the denomination of each
+   * coin.
    */
   for(var antiIndex in wallet.set.reverse()) {
     var pence = maxIndex - antiIndex;
