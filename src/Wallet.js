@@ -42,7 +42,8 @@ Wallet.penceFromPounds = function(pence) {
    * orders words, we round down if and only if the first digit is
    * between 0 and 4; and in particular, 0.5 is rounded up to 1.
    */
-  return Math.floor(pence * 100 + 0.5);
+  if(pence == "") return undefined;
+  else return Math.floor(pence * 100 + 0.5);
 }
 
 Wallet.normalise = function(input) {
@@ -72,14 +73,18 @@ Wallet.normalise = function(input) {
    * clarified for a smoother user interface.
    */
   if(match = /^£(\d*\.?\d*)p?$/.exec(input)) {
-    return Wallet.penceFromPounds(match[1]);
+    var pounds = match[1];
+    if(pounds === ".") return undefined;
+    else return Wallet.penceFromPounds(pounds);
   } else if(match = /^(\d*\.\d*)p?$/.exec(input)) {
-    return Wallet.penceFromPounds(match[1]);
+    var pounds = match[1];
+    if(pounds === ".") return undefined;
+    else return Wallet.penceFromPounds(pounds);
   }
   else if(match = /^(\d+)p?$/.exec(input)) {
     return Math.floor(match[1]);
   } else {
-    return NaN;
+    return undefined;
   }
 }
 

@@ -33,7 +33,14 @@ describe("Wallet", function() {
       { "input" : "£1.p", "output" : 100 },
       { "input" : "001.41p", "output" : 141 },
       { "input" : "4.235p", "output" : 424 },
-      { "input" : "£1.257422457p", "output" : 126 }]
+      { "input" : "£1.257422457p", "output" : 126 },
+      { "input" : "", "output" : undefined },
+      { "input" : "1x", "output" : undefined },
+      { "input" : "£1x.0p", "output" : undefined },
+      { "input" : "£p", "output" : undefined },
+      { "input" : "£.p", "output" : undefined },
+      { "input" : ".", "output" : undefined }]
+
 
     // TODO invalid inputs, including "£.p", ".", "3.27p"
 
