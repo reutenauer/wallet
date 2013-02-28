@@ -3,7 +3,12 @@ describe("Wallet", function() {
 
   describe("pick()", function() {
     var tests = [
-      { "value" : 1, "set" : { 1 : 1 } }]
+      { "value" : 1, "set" : { 1 : 1 } },
+      { "value" : 123, "set" : { 100 : 1, 20 : 1, 2 : 1, 1 : 1 } },
+      { "value" : 323, "set" : { 200 : 1, 100 : 1, 20 : 1, 2 : 1, 1 : 1 } },
+      // This tests that the set doesn’t contain garbage
+      { "value" : 123, "set" : { 100 : 1, 20 : 1, 2 : 1, 1 : 1 } },
+      { "value" : 60, "set" : { 20 : 3 } }]
 
     it("computes the sets of coins correctly", function() {
       var l = tests.length;
@@ -11,7 +16,6 @@ describe("Wallet", function() {
       for(var i = 0; i < l; i++) {
         var test = tests[i]
         wallet.pick(test.value);
-        console.log(wallet.set);
         expect(wallet.set).toEqual(test.set);
       }
     });

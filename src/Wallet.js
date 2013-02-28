@@ -39,11 +39,12 @@ Wallet.countCoins = function(set) {
 Wallet.recurse = function(amount, denoms) {
   console.log(amount);
   console.log(denoms);
+
   var x;
   while((x = denoms.pop()) > amount);
 
   var q = Math.floor(amount / x);
-  if(denoms.length == 0) {
+  if(denoms.length == 0 || amount % x == 0) {
     var result = [];
     result[x] = q;
     console.log("Returning:");
