@@ -4,7 +4,7 @@ function Wallet() {
    * which is reproduced in the array below.  It is straightforward to
    * change it if desired.
    */
-  this.denominations = [200, 100, 50, 20, 2, 1];
+  this.denominations = [1, 2, 20, 50, 100, 200];
 }
 
 Wallet.prototype.pick = function(amountAsString) {
