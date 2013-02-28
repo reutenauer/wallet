@@ -12,7 +12,7 @@ Wallet.prototype.pick = function(amountAsString) {
   if(amount == NaN) return undefined;
 
   /* The array containing the set of coins that make up the desired sum.  We
-   * initialise here so as to have a clean one after here run of pick().
+   * initialise here so as to have a clean one after each run of pick().
    */
   this.set = new Array();
 
