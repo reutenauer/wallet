@@ -46,7 +46,7 @@ Wallet.recurse = function(amount, denoms) {
 
   var candidate;
 
-  for(var i = 0; i < q; i++) {
+  for(var i = 0; i <= q; i++) {
     var set = Wallet.recurse(amount - i * x, denoms.slice(0, l - 1));
     set[x] = q;
     if(!candidate || (Wallet.countCoins(candidate) > Wallet.countCoins(set))) candidate = set;
