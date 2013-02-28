@@ -24,7 +24,7 @@ Wallet.prototype.pick = function(amountAsString) {
    * able to find a counterexample – AR, 2013-01-10.
    */
 
-  return Wallet.recurse(amount, this.denominations.slice());
+  this.set = Wallet.recurse(amount, this.denominations.slice()).slice();
 }
 
 Wallet.countCoins = function(set) {
@@ -37,6 +37,8 @@ Wallet.countCoins = function(set) {
 }
 
 Wallet.recurse = function(amount, denoms) {
+  console.log(amount);
+  console.log(denoms);
   var x;
   while((x = denoms.pop()) > amount);
 
@@ -44,6 +46,8 @@ Wallet.recurse = function(amount, denoms) {
   if(denoms.length == 0) {
     var result = [];
     result[x] = q;
+    console.log("Returning:");
+    console.log(result);
     return result;
   }
 
