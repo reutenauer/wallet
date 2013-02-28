@@ -40,16 +40,19 @@ Wallet.recurse = function(amount, denoms) {
   var x;
   while((x = denoms.pop()) > amount);
 
-  var l = denoms.length;
   var q = Math.floor(amount / x);
-  if(l == 1) return { x : q };
+  if(denoms.length == 0) {
+    var result = [];
+    result[x] = q;
+    return result;
+  }
 
   var candidate;
 
   for(var i = 0; i <= q; i++) {
-    var set = Wallet.recurse(amount - i * x, denoms.slice(0, l - 1));
+    var set = Wallet.recurse(amount - i * x, denoms.slice());
     set[x] = q;
-    if(!candidate || (Wallet.countCoins(candidate) > Wallet.countCoins(set))) candidate = set;
+    if(Wallet.countCoins(candidate) == 0 || (Wallet.countCoins(candidate) > Wallet.countCoins(set))) candidate = set;
   }
 
   return candidate;
