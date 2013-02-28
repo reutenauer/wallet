@@ -24,7 +24,7 @@ Wallet.prototype.pick = function(amountAsString) {
    * able to find a counterexample – AR, 2013-01-10.
    */
 
-  return Wallet.recurse(amount, this.denominations);
+  return Wallet.recurse(amount, this.denominations.slice());
 }
 
 Wallet.countCoins = function(set) {
