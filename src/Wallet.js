@@ -23,16 +23,36 @@ Wallet.prototype.pick = function(amountAsString) {
    * This may not yield the smallest set each time, by I haven’t been
    * able to find a counterexample – AR, 2013-01-10.
    */
-  var l = this.denominations.length;
-  for(var i = 0; i < l; i++) {
-    var coin = this.denominations[i];
-    var quotient = Math.floor(amount / coin);
-    if(quotient > 0)
-    {
-      this.set[coin] = quotient;
-      amount -= quotient * coin;
-    }
+
+  return Wallet.recurse(amount, this.denominations);
+}
+
+Wallet.countCoins = function(set) {
+  var numCoins = 0;
+  for(coin in set) {
+    numCoins += set[coin];
   }
+
+  return numCoins;
+}
+
+Wallet.recurse = function(amount, denoms) {
+  var x;
+  while((x = denoms.pop()) > amount);
+
+  var l = denoms.length;
+  var q = Math.floor(amount / x);
+  if(l == 1) return { x : q };
+
+  var candidate;
+
+  for(var i = 0; i < q; i++) {
+    var set = Wallet.recurse(amount - i * x, denoms.slice(0, l - 1));
+    set[x] = q;
+    if(!candidate || (Wallet.countCoins(candidate) > Wallet.countCoins(set))) candidate = set;
+  }
+
+  return candidate;
 }
 
 // TODO: Refactor that to make calls in normalise() more rational.
